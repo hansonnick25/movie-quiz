@@ -30,7 +30,7 @@ $.ajax(mdbSettings).done(function (response) {
 
 // This needs to fire after the above ajax call is done ( will figure out later )
 const omdbSettings = {
-  async: true,
+  async: false,
   crossDomain: true,
   url: `http://www.omdbapi.com/?i=${movieId[1]}&apikey=1a17fd2d`,
   method: "GET",
