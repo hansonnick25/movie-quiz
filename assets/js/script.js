@@ -12,9 +12,8 @@ let movieId = [
   "tt0115678",
 ];
 
-// This needs to go first
 const mdbSettings = {
-  async: true,
+  async: false,
   crossDomain: true,
   url: "https://moviesdatabase.p.rapidapi.com/titles/random?startYear=1930&genre=Drama&endYear=1980&list=most_pop_movies",
   method: "GET",
@@ -24,17 +23,16 @@ const mdbSettings = {
   },
 };
 
-$.ajax(mdbSettings).done(function (response) {
-  console.log(response);
-});
-
-// This needs to fire after the above ajax call is done ( will figure out later )
 const omdbSettings = {
   async: true,
   crossDomain: true,
   url: `http://www.omdbapi.com/?i=${movieId[1]}&apikey=1a17fd2d`,
   method: "GET",
 };
+
+$.ajax(mdbSettings).done(function (response) {
+  console.log(response);
+});
 
 $.ajax(omdbSettings).done(function (response) {
   console.log(`omdb stuff`);
