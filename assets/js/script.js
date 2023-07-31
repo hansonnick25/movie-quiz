@@ -33,7 +33,7 @@ $.ajax(mdbGetMovieList).done(function (response) {
 });
 
 const mdbGetMovieQuotes = {
-  async: true,
+  async: false,
   crossDomain: true,
   url: `https://moviesdatabase.p.rapidapi.com/titles/${movieId[0]}?info=quotes`,
   method: "GET",
@@ -51,4 +51,22 @@ $.ajax(mdbGetMovieQuotes).done(function (response) {
     $("#quote").append(`<h2>${shownQuote}</h2>`);
   }
   console.log(quote);
+});
+
+const mdbGetMovieTrailers = {
+  async: false,
+  crossDomain: true,
+  url: `https://moviesdatabase.p.rapidapi.com/titles/${movieId[0]}?info=custom_info`,
+  method: "GET",
+  headers: {
+    "X-RapidAPI-Key": "e6f6f362ebmsh767ffbd1821e970p1c3b80jsn8ca07780167f",
+    "X-RapidAPI-Host": "moviesdatabase.p.rapidapi.com",
+  },
+};
+
+$.ajax(mdbGetMovieTrailers).done(function (response) {
+  console.log(response);
+  let movieTrailer = response.results.trailer;
+  console.log(movieTrailer);
+  $("#trailer").append(`<a href="${movieTrailer}">Movie Trailer</a>`);
 });
