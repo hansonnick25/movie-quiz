@@ -1,17 +1,8 @@
 let movieId = [];
-
-const omdbGetMovieRating = {
-  async: true,
-  crossDomain: true,
-  url: `http://www.omdbapi.com/?i=${movieId[0]}&apikey=1a17fd2d`,
-  method: "GET",
-};
-
-$.ajax(omdbGetMovieRating).done(function (response) {
-  console.log(`omdb stuff`);
-  console.log(response);
-  console.log(response.Ratings[0].Value);
-});
+let movies = [];
+let posters = [];
+let rating;
+let ratingSource;
 
 const mdbGetMovieList = {
   async: false,
@@ -25,11 +16,32 @@ const mdbGetMovieList = {
 };
 
 $.ajax(mdbGetMovieList).done(function (response) {
+  console.log("movie list");
   console.log(response);
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 4; i++) {
     movieId.push(response.results[i].id);
+    movies.push(response.results[i].originalTitleText.text);
   }
-  $("#title").append(`<h2>${response.results[0].titleText.text}</h2>`);
+  // get movie poster
+  for (let i = 0; i < 4; i++) {
+    posters.push(response.results[i].primaryImage.url);
+  }
+});
+
+const omdbGetMovieRating = {
+  async: false,
+  crossDomain: true,
+  url: `http://www.omdbapi.com/?i=${movieId[0]}&apikey=1a17fd2d`,
+  method: "GET",
+};
+
+$.ajax(omdbGetMovieRating).done(function (response) {
+  console.log(`movie rating`);
+  console.log(response);
+  if (response.Ratings[0].Value != undefined) {
+    rating = response.Ratings[1].Value;
+    ratingSource = response.Ratings[1].Source;
+  }
 });
 
 const mdbGetMovieQuotes = {
@@ -44,15 +56,14 @@ const mdbGetMovieQuotes = {
 };
 
 $.ajax(mdbGetMovieQuotes).done(function (response) {
+  console.log("movie quotes");
   console.log(response);
   let quote = response.results.quotes.edges[0].node.lines;
   for (let i = 0; i < quote.length; i++) {
     if (quote[i].text != null) {
       shownQuote = quote[i].text;
-      $("#quote").append(`<h3>${shownQuote}</h3>`);
     }
   }
-  console.log(quote);
 });
 
 const mdbGetMovieTrailers = {
@@ -67,8 +78,18 @@ const mdbGetMovieTrailers = {
 };
 
 $.ajax(mdbGetMovieTrailers).done(function (response) {
+  console.log("movie trailers");
   console.log(response);
   let movieTrailer = response.results.trailer;
   console.log(movieTrailer);
-  $("#trailer").append(`<a href="${movieTrailer}">Movie Trailer</a>`);
 });
+
+const gameQuestions = {
+  question: `Which movie had a rating of ${rating}`,
+  source: ratingSource,
+  correctMovie: movies[0],
+  movieTitles: movies,
+  moviePosters: posters,
+};
+
+console.log(gameQuestions);
