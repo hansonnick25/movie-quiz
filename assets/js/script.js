@@ -16,7 +16,7 @@ $.ajax(omdbGetMovieRating).done(function (response) {
 const mdbGetMovieList = {
   async: false,
   crossDomain: true,
-  url: "https://moviesdatabase.p.rapidapi.com/titles/random?startYear=1930&genre=Drama&endYear=1980&list=most_pop_movies",
+  url: "https://moviesdatabase.p.rapidapi.com/titles/random?startYear=1990&endYear=2020&list=top_rated_english_250",
   method: "GET",
   headers: {
     "X-RapidAPI-Key": "e6f6f362ebmsh767ffbd1821e970p1c3b80jsn8ca07780167f",
@@ -47,8 +47,10 @@ $.ajax(mdbGetMovieQuotes).done(function (response) {
   console.log(response);
   let quote = response.results.quotes.edges[0].node.lines;
   for (let i = 0; i < quote.length; i++) {
-    shownQuote = quote[i].text;
-    $("#quote").append(`<h2>${shownQuote}</h2>`);
+    if (quote[i].text != null) {
+      shownQuote = quote[i].text;
+      $("#quote").append(`<h3>${shownQuote}</h3>`);
+    }
   }
   console.log(quote);
 });
