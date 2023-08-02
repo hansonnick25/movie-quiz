@@ -145,7 +145,10 @@ $("#submitBtn").on("click", function () {
   // Calculate the score and save it to local storage
   correctAnswer = $("#movie1poster").attr("alt");
   if (selectedAnswer == correctAnswer) {
+    $("#result").text("correct");
     score += 10;
+  } else {
+    $("#result").text("incorrect");
   }
   saveHighScores(score);
 
