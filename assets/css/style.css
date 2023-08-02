@@ -1,0 +1,105 @@
+/* Reset some default styles */
+body, h1, p, label, input, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+    background-color: #ffffff;
+  }
+  
+  .card {
+    background-color: #209bd8;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .input-bordered {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .form-control {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .label-text {
+    margin-left: 5px;
+    font-size: 16px;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .btn-active {
+    background-color: #007BFF;
+    color: #ffffff;
+  }
+  
+/* Movie placeholders */
+.movie-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 30px;
+  }
+  
+  .movie-image {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  /* Additional styles for anchor tags (movie links) */
+  a {
+    text-decoration: none;
+    color: #007BFF;
+    display: inline-block;
+  }
+
+
+
+
+  /* Media query for mobile devices */
+  @media screen and (max-width: 480px) {
+    .heading {
+      font-size: 20px;
+    }
+  
+    .input-bordered {
+      max-width: 100%;
+    }
+  
+    .btn {
+      width: 100%;
+    }
+  }
+  
