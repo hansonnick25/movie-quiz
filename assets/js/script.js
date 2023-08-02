@@ -9,7 +9,6 @@ let gamePlay = function () {
   // Hide the homepage and show the quiz question page
   $("#homepage").addClass("hidden");
   $("#quizQuestion").removeClass("hidden");
-  // $("#quizQuestion").addClass("container mx-auto");
 
   // Arrays to store movie data
   let movieId = [];
