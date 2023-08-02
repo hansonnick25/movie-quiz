@@ -2,13 +2,14 @@
 let selectedAnswer = null;
 let score = 0;
 let correctAnswer;
+let questionCounter = 0;
+let maxQuestions = 10;
 
 // Function to handle the game logic
 let gamePlay = function () {
   // Hide the homepage and show the quiz question page
   $("#homepage").addClass("hidden");
   $("#quizQuestion").removeClass("hidden");
-  $("#quizQuestion").addClass("container mx-auto");
 
   // Arrays to store movie data
   let movieId = [];
@@ -76,7 +77,6 @@ let gamePlay = function () {
     console.log("movie trailers");
     console.log(response);
     movieTrailer = response.results.trailer;
-    console.log();
   });
 
   // Object containing the current game question and movie data
@@ -108,19 +108,21 @@ let gamePlay = function () {
 
   // Event listener to handle movie poster selection
   $(".movie-container").on("click", handleMovieSelection);
+
+  questionCounter++;
+
+  // Function to handle movie poster selection
+  function handleMovieSelection(event) {
+    // Remove 'selected' class from all movie containers
+    $(".movie-container").removeClass("selected");
+
+    // Add 'selected' class to the clicked movie container
+    $(event.currentTarget).addClass("selected");
+
+    // Set the selected answer to the alt attribute of the clicked movie poster
+    selectedAnswer = $(event.currentTarget).find("img").attr("alt");
+  }
 };
-
-// Function to handle movie poster selection
-function handleMovieSelection(event) {
-  // Remove 'selected' class from all movie containers
-  $(".movie-container").removeClass("selected");
-
-  // Add 'selected' class to the clicked movie container
-  $(event.currentTarget).addClass("selected");
-
-  // Set the selected answer to the alt attribute of the clicked movie poster
-  selectedAnswer = $(event.currentTarget).find("img").attr("alt");
-}
 
 // Function to save high scores to local storage
 function saveHighScores(score) {
@@ -146,26 +148,36 @@ $("#submitBtn").on("click", function () {
   correctAnswer = $("#movie1poster").attr("alt");
   if (selectedAnswer == correctAnswer) {
     $("#result").text("correct");
-    score += 10;
+    score = score + 10;
   } else {
     $("#result").text("incorrect");
   }
-  saveHighScores(score);
-
-  // Event listener to handle movie poster selection for the next question
-  $(".movie-container").on("click", handleMovieSelection);
 });
 
 $("#continueBtn").on("click", function () {
-  // Hide the review page and show the end page
-  $("#reviewPage").addClass("hidden");
-  $("#endPage").removeClass("hidden");
+  if (questionCounter === maxQuestions) {
+    // Proceed to the review page instead of the next question
+    $("#reviewPage").addClass("hidden");
 
-  // Display the high scores on the "End Page"
-  let highScores = getHighScores();
-  let highScoresList = $("#highScoresList");
-  highScoresList.empty();
-  for (let i = 0; i < highScores.length; i++) {
-    highScoresList.append(`<li>${highScores[i]}</li>`);
+    // Hide the "Submit" button since it's not needed yet
+    $("#submitBtn").addClass("hidden");
+    $("#endPage").removeClass("hidden");
+
+    saveHighScores(score);
+    // Display the high scores on the "End Page"
+    let highScores = getHighScores();
+    let highScoresList = $("#highScoresList");
+    highScoresList.empty();
+    for (let i = 0; i < highScores.length; i++) {
+      highScoresList.append(`<li>${highScores[i]}</li>`);
+    }
+  } else {
+    // Hide the quiz question page
+    $("#reviewPage").addClass("hidden");
+
+    // Reset the selected answer for the next question
+    selectedAnswer = null;
+    // If it's not the last question, proceed to the next question
+    gamePlay();
   }
 });
