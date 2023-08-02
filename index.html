@@ -1,40 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Head section with character encoding, viewport, and title -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="assets/css/style.css" />
-      <link href="https://cdn.jsdelivr.net/npm/daisyui@3.5.0/dist/full.css" rel="stylesheet" type="text/css"/>
-      <script src="https://cdn.tailwindcss.com"></script>
-
-      
-    <title>Movie Quiz</title>
+    <title>Movie Ranker</title>
+    <!-- Include Tailwind CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   </head>
-  <body>  
-    <div class="card">
-      <h1 class="heading"> MOVIE RANKER</h1>
-      <div class="search">
-        <input type="text" placeholder="username" class="input-bordered input-error w-full max-w-xs" />
-        <div class="form-control">
-          <label class="lable cursor-pointer"></label>
-            <span class="label-text">Remeber username</span>
-            <input type="checkbox" class="toggle"checked/>
-      <!---<input type="submit" value="submit">-->
-          <button id="startButton" class="btn btn-active rounded-full">Submit</button>
+  <body class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+    <div class="container mx-auto py-10 text-center text-white">
+      <!-- Homepage -->
+      <div id="homepage">
+        <!-- Display the title and a "Start" button -->
+        <h1 class="text-6xl font-bold mb-4">Movie Ranker</h1>
+        <button
+          id="startBtn"
+          class="px-10 py-5 bg-green-500 text-white rounded-lg text-2xl"
+        >
+          Start
+        </button>
+      </div>
+
+      <!-- Quiz Question -->
+      <div id="quizQuestion" class="hidden">
+        <!-- Display the question and movie options (posters) -->
+        <h2 id="questionText" class="text-3xl font-bold mb-4">Question 1</h2>
+        <div class="grid grid-cols-2 gap-4">
+          <div
+            class="movie-container border-2 border-transparent rounded p-6 cursor-pointer"
+          >
+            <img class="movie-poster" id="movie1poster" src="" alt="" />
+          </div>
+          <div
+            class="movie-container border-2 border-transparent rounded p-6 cursor-pointer"
+          >
+            <img class="movie-poster" id="movie2poster" src="" alt="" />
+          </div>
+          <div
+            class="movie-container border-2 border-transparent rounded p-6 cursor-pointer"
+          >
+            <img class="movie-poster" id="movie3poster" src="" alt="" />
+          </div>
+          <div
+            class="movie-container border-2 border-transparent rounded p-6 cursor-pointer"
+          >
+            <img class="movie-poster" id="movie4poster" src="" alt="" />
+          </div>
+        </div>
+        <!-- Provide a "Submit" button to check the answer -->
+        <button
+          id="submitBtn"
+          class="px-10 py-5 bg-green-500 text-white rounded-lg mt-6 text-2xl"
+        >
+          Submit
+        </button>
+      </div>
+
+      <!-- Review Page -->
+      <div id="reviewPage" class="hidden">
+        <!-- Display the result and show the movie trailer -->
+        <h2 class="text-3xl font-bold mb-4">Review</h2>
+        <p class="mb-2">
+          You got it <span id="result" class="font-bold"></span>!
+        </p>
+        <iframe
+          id="movieTrailer"
+          src=""
+          allowfullscreen="1"
+          class="w-full h-96"
+        ></iframe>
+        <!-- Provide a "Continue" button to move to the next question or end page -->
+        <button
+          id="continueBtn"
+          class="px-10 py-5 bg-blue-500 text-white rounded-lg mt-6 text-2xl"
+        >
+          Continue
+        </button>
+      </div>
+
+      <!-- End Page -->
+      <div id="endPage" class="hidden">
+        <!-- Display the high scores list -->
+        <h2 class="text-3xl font-bold mb-4">High Scores</h2>
+        <ul id="highScoresList" class="list-disc ml-8">
+          <!-- High scores will be dynamically added here -->
+        </ul>
+      </div>
     </div>
-  </div>
-</div>
-<!-----Movie titile-->
-<div id="title"></div>
-<div>Questions</div>
-<div> Answers</div>
-<div id="trailer"></div>
 
-<button id="startButton" class="btn btn-active rounded-full">Start</button>
-
-   
-</body>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-  <script src="assets/js/script.js"></script>
+    <!-- Include your JavaScript code to handle game logic -->
+    <script src="./assets/js/script.js"></script>
+  </body>
 </html>
