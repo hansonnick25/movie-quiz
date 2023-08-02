@@ -5,36 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="assets/css/style.css" />
-      <link href="https://cdn.jsdelivr.net/npm/daisyui@3.5.0/dist/full.css" rel="stylesheet" type="text/css"/>
-      <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@3.5.0/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
 
-      
     <title>Movie Quiz</title>
   </head>
-  <body>  
+  <body>
     <div class="card">
-      <h1 class="heading"> MOVIE RANKER</h1>
+      <h1 class="heading">MOVIE RANKER</h1>
       <div class="search">
-        <input type="text" placeholder="username" class="input-bordered input-error w-full max-w-xs" />
+        <input
+          type="text"
+          placeholder="username"
+          class="input-bordered input-error w-full max-w-xs"
+        />
         <div class="form-control">
           <label class="lable cursor-pointer"></label>
-            <span class="label-text">Remeber username</span>
-            <input type="checkbox" class="toggle"checked/>
-      <!---<input type="submit" value="submit">-->
-          <button id="startButton" class="btn btn-active rounded-full">Submit</button>
+          <span class="label-text">Remember username</span>
+          <input type="checkbox" class="toggle" checked />
+          <!---<input type="submit" value="submit">-->
+          <button id="startButton" class="btn btn-active rounded-full">
+            Submit
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-<!-----Movie titile-->
-<div id="title"></div>
-<div>Questions</div>
-<div> Answers</div>
-<div id="trailer"></div>
+    <!-----Movie titile-->
+    <div id="title"></div>
+    <div>Questions</div>
+    <div>Answers</div>
+    <div id="trailer"></div>
 
-<button id="startButton" class="btn btn-active rounded-full">Start</button>
-
-   
-</body>
+    <button id="startButton" class="btn btn-active rounded-full">Start</button>
+  </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
   <script src="assets/js/script.js"></script>
 </html>
