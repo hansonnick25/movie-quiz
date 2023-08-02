@@ -4,12 +4,28 @@ let score = 0;
 let correctAnswer;
 let questionCounter = 0;
 
+// Function to shuffle arrays so answers are randomized
+function shuffle(obj1, obj2) {
+  var index = obj1.length;
+  var rnd, tmp1, tmp2;
+
+  while (index) {
+    rnd = Math.floor(Math.random() * index);
+    index -= 1;
+    tmp1 = obj1[index];
+    tmp2 = obj2[index];
+    obj1[index] = obj1[rnd];
+    obj2[index] = obj2[rnd];
+    obj1[rnd] = tmp1;
+    obj2[rnd] = tmp2;
+  }
+}
+
 // Function to handle the game logic
 let gamePlay = function () {
   // Hide the homepage and show the quiz question page
   $("#homepage").addClass("hidden");
   $("#quizQuestion").removeClass("hidden");
-  // $("#quizQuestion").addClass("container mx-auto");
 
   // Arrays to store movie data
   let movieId = [];
@@ -89,22 +105,21 @@ let gamePlay = function () {
     moviePosters: posters,
   };
 
+  correctAnswer = gameQuestions.correctMovie;
+
+  // Shuffle the movie titles and posters arrays
+  shuffle(gameQuestions.movieTitles, gameQuestions.moviePosters);
+  console.log(gameQuestions);
+
   // Update the question and display the correct movie trailer
   $("#questionText").text(gameQuestions.question);
   $("#movieTrailer").attr("src", gameQuestions.correctMovieTrailer);
 
   // Display the movie options (posters) on the page
-  $("#movie1poster").attr("src", gameQuestions.moviePosters[0]);
-  $("#movie1poster").attr("alt", gameQuestions.movieTitles[0]);
-
-  $("#movie2poster").attr("src", gameQuestions.moviePosters[1]);
-  $("#movie2poster").attr("alt", gameQuestions.movieTitles[1]);
-
-  $("#movie3poster").attr("src", gameQuestions.moviePosters[2]);
-  $("#movie3poster").attr("alt", gameQuestions.movieTitles[2]);
-
-  $("#movie4poster").attr("src", gameQuestions.moviePosters[3]);
-  $("#movie4poster").attr("alt", gameQuestions.movieTitles[3]);
+  for (let i = 0; i < 4; i++) {
+    $(`#movie${i + 1}poster`).attr("src", gameQuestions.moviePosters[i]);
+    $(`#movie${i + 1}poster`).attr("alt", gameQuestions.movieTitles[i]);
+  }
 
   // Event listener to handle movie poster selection
   $(".movie-container").on("click", handleMovieSelection);
@@ -145,7 +160,8 @@ $("#submitBtn").on("click", function () {
   $("#reviewPage").removeClass("hidden");
 
   // Calculate the score and save it to local storage
-  correctAnswer = $("#movie1poster").attr("alt");
+  console.log(correctAnswer);
+  console.log(selectedAnswer);
   if (selectedAnswer == correctAnswer) {
     $("#result").text("correct");
     score = score + 10;
@@ -186,6 +202,7 @@ $("#restartBtn").on("click", function () {
   // Hide the end page and show the homepage to restart the quiz
   $("#endPage").addClass("hidden");
   $("#homepage").removeClass("hidden");
+  $("#submitBtn").removeClass("hidden");
   // Reset the game variables and question counter
   selectedAnswer = null;
   score = 0;
