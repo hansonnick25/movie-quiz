@@ -160,7 +160,6 @@ $("#submitBtn").on("click", function () {
   $("#reviewPage").removeClass("hidden");
 
   // Calculate the score and save it to local storage
-  // correctAnswer = $("#movie1poster").attr("alt");
   console.log(correctAnswer);
   console.log(selectedAnswer);
   if (selectedAnswer == correctAnswer) {
