@@ -185,6 +185,7 @@ $("#restartBtn").on("click", function () {
   // Hide the end page and show the homepage to restart the quiz
   $("#endPage").addClass("hidden");
   $("#homepage").removeClass("hidden");
+  $("#submitBtn").removeClass("hidden");
   // Reset the game variables and question counter
   selectedAnswer = null;
   score = 0;
