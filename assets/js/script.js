@@ -3,13 +3,13 @@ let selectedAnswer = null;
 let score = 0;
 let correctAnswer;
 let questionCounter = 0;
+let maxQuestions = 10;
 
 // Function to handle the game logic
 let gamePlay = function () {
   // Hide the homepage and show the quiz question page
   $("#homepage").addClass("hidden");
   $("#quizQuestion").removeClass("hidden");
-  // $("#quizQuestion").addClass("container mx-auto");
 
   // Arrays to store movie data
   let movieId = [];
@@ -155,7 +155,7 @@ $("#submitBtn").on("click", function () {
 });
 
 $("#continueBtn").on("click", function () {
-  if (questionCounter === 4) {
+  if (questionCounter === maxQuestions) {
     // Proceed to the review page instead of the next question
     $("#reviewPage").addClass("hidden");
 
