@@ -64,7 +64,7 @@ let gamePlay = function () {
   const omdbGetMovieRating = {
     async: false,
     crossDomain: true,
-    url: `http://www.omdbapi.com/?i=${movieId[0]}&apikey=1a17fd2d`,
+    url: `https://www.omdbapi.com/?i=${movieId[0]}&apikey=1a17fd2d`,
     method: "GET",
   };
 
